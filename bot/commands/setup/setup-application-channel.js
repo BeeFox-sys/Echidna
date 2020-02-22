@@ -3,7 +3,7 @@ const {getGuildDoc} = require('../../utils')
 module.exports = {
     name: 'setup application channel',
     aliases: [],
-    description: 'Sets the application channel',
+    description: 'Sets the channel applications are sent to',
     usage: [],
     catagory: "Setup",
     hidden: false,
