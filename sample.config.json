@@ -1,5 +1,5 @@
 {
-    "token":"BOT TOKEN",
-    "dbUrl":"mongodb://localhost/boilerplate",
-    "prefix":"b~"
+    "token":"Token",
+    "dbUrl":"mongodb://localhost/echidna",
+    "prefix":"ech!"
 }
