@@ -21,6 +21,7 @@ module.exports = {
             let guild = await getGuildDoc(message.guild.id)
             if(!guild.questions.length) return message.channel.send(`This guild has no application questions! Ask a mod to set some up!`)
             if(!guild.applicationChannel) return message.channel.send(`This guild has no aplication channel! Ask a mod to set one up!`)
+            if(!guild.verifiedRole) return message.channel.send(`This guild has no verified role! Ask a mod to set one up!`)
             if(message.member.roles.cache.has(guild.verifiedRole)) return message.channel.send("You are already verified!")
             let dmChannel = message.author.dmChannel
             let answers = []
