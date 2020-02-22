@@ -1,5 +1,6 @@
 {
     "token":"Token",
     "dbUrl":"mongodb://localhost/echidna",
-    "prefix":"ech!"
+    "prefix":"ech!",
+    "about": "This is a bot that allows for users to submit applications to become verified on a server"
 }
