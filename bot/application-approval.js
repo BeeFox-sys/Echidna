@@ -23,6 +23,7 @@ Client.on("messageReactionAdd", async (reaction, user)=>{
     let guild = await guilds.findOne({id:reaction.message.guild.id})
     if(!guild) return
     if(!guild.verifiedRole) return
+    if(!reaction.message.guild.me.hasPermission("MANAGE_ROLES")) return reaction.message.channel.send("I can't do anything without the manage roles permission! Please make sure I can manage roles then try again!")
     let applicant = reaction.message.guild.member(application.user)
     if(reaction.emoji.name == "❌"){
         await applicant.send(`I am sorry, your application for ${reaction.message.guild.name} was declined. You may submit another one if you wish`)

@@ -7,7 +7,7 @@ global.Client = client
 Client.config = require.main.require("../config")
 //Setup Commands
 Client.commands = new Collection();
-Client.permissions = []
+Client.permissions = ["MANAGE_ROLES","SEND_MESSAGES"]
 //Read Commands
 const fs = require.main.require('fs');
 const getAllFiles = function(dirPath, prevFiles) {
