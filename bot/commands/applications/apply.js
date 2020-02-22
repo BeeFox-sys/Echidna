@@ -13,7 +13,7 @@ module.exports = {
     owner: false,
     guild: false,
     userPerms: [],
-    runPerms: [],
+    runPerms: ["EMBED_LINKS","ADD_REACTIONS"],
 	async execute(message, args) {
         try{
             let appDoc = await applications.findOne({user:message.author.id,guild:message.guild.id})

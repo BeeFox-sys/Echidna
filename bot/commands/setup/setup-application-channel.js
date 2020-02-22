@@ -8,7 +8,7 @@ module.exports = {
     catagory: "Setup",
     hidden: false,
     owner: false,
-    guild: false,
+    guild: true,
     userPerms: ['MANAGE_ROLES'],
     runPerms: [],
 	async execute(message, args) {
