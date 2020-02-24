@@ -17,19 +17,27 @@ module.exports = {
 	async execute(message, args) {
         try{
             let appDoc = await applications.findOne({user:message.author.id,guild:message.guild.id})
+            if(Client.applications.has(message.author.id)) return message.channel.send("You are currently already filling out an application for a guild, please try again once you have filled it out!")
             if(appDoc) return message.channel.send(`You have already submitted an application for this guild!`)
             let guild = await getGuildDoc(message.guild.id)
             if(!guild.questions.length) return message.channel.send(`This guild has no application questions! Ask a mod to set some up!`)
             if(!guild.applicationChannel) return message.channel.send(`This guild has no aplication channel! Ask a mod to set one up!`)
             if(!guild.verifiedRole) return message.channel.send(`This guild has no verified role! Ask a mod to set one up!`)
             if(message.member.roles.cache.has(guild.verifiedRole)) return message.channel.send("You are already verified!")
-            let dmChannel = message.author.dmChannel
+            let dmChannel = await message.author.dmChannel
             let answers = []
             if(!dmChannel) dmChannel = await message.author.createDM()
+            try{
+                await dmChannel.send(`> Application for ${message.guild.name}`)
+            } catch (error) {
+                console.error(error)
+                return message.reply("Something went wrong with your application, it is likely that I could not DM you, please make sure I am not blocked, and that you have DMs on for this server.")
+            }
+            Client.applications.set(message.author.id)
             for (let index = 0; index < guild.questions.length; index++) {
                 const question = guild.questions[index];
                 try{
-                    await dmChannel.send(`\n**Question ${index+1}:** ${question}`)
+                    await dmChannel.send(`**Question ${index+1}:** ${question}`)
                 } catch (error) {
                     console.error(error)
                     return message.reply("Something went wrong with your application, it is likely that I could not DM you, please make sure I am not blocked, and that you have DMs on for this server.")
@@ -62,7 +70,8 @@ module.exports = {
             if(error) throw error
             await appMessage.react("✅")
             await appMessage.react("❌")
-            await dmChannel.send(`Your application for ${message.guild.name} has been submitted`)
+            await dmChannel.send(`> Your application for ${message.guild.name} has been submitted`)
+            Client.applications.delete(message.author.id)
         } catch (error) {throw error}
     }
 };

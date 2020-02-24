@@ -5,6 +5,7 @@ const {userFromMention,humanReadablePermissions,getGuildDoc} = require.main.requ
 const client = new DiscClient({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] })
 global.Client = client
 Client.config = require.main.require("../config")
+Client.applications = new Map()
 //Setup Commands
 Client.commands = new Collection();
 Client.permissions = ["MANAGE_ROLES","SEND_MESSAGES","VIEW_CHANNEL","READ_MESSAGE_HISTORY"]
