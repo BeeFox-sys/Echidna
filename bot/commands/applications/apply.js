@@ -32,7 +32,7 @@ module.exports = {
                     await dmChannel.send(`\n**Question ${index+1}:** ${question}`)
                 } catch (error) {
                     console.error(error)
-                    return message.reply.send("Something went wrong with your application, it is likely that I could not DM you, please make sure I am not blocked, and that you have DMs on for this server.")
+                    return message.reply("Something went wrong with your application, it is likely that I could not DM you, please make sure I am not blocked, and that you have DMs on for this server.")
                 }
                 let response = await dmChannel.awaitMessages((m=>m.author == message.author), { max: 1 })
                 if(response.first().content.length > 1028) {
