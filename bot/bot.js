@@ -76,6 +76,7 @@ Client.on('ready', async () => {
         //Remove mention
         args.shift();
     }
+    else return
 
     try {
         //Find Command
